@@ -3,6 +3,7 @@ package br.com.roni.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,28 +18,29 @@ public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "id_estado")
+	private Long id;
 	private String nome;
 
 	@OneToMany(mappedBy = "estado")
 	private List<Cidade> cidades;
-	
+
 	public Estado() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Estado(Integer id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-	}
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Estado(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
 	}
 
 	public String getNome() {
@@ -81,7 +83,5 @@ public class Estado implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
