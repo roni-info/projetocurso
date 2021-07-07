@@ -15,6 +15,7 @@ import br.com.roni.model.Cidade;
 import br.com.roni.model.Cliente;
 import br.com.roni.model.Endereco;
 import br.com.roni.model.Estado;
+import br.com.roni.model.ItemPedido;
 import br.com.roni.model.Pagamento;
 import br.com.roni.model.PagamentoComBoleto;
 import br.com.roni.model.PagamentoComCartao;
@@ -25,6 +26,7 @@ import br.com.roni.repository.CidadeRepository;
 import br.com.roni.repository.ClienteRepository;
 import br.com.roni.repository.EnderecoRepository;
 import br.com.roni.repository.EstadoRepository;
+import br.com.roni.repository.ItemPedidoRepository;
 import br.com.roni.repository.PagamentoRepository;
 import br.com.roni.repository.PedidoRepository;
 import br.com.roni.repository.ProdutoRepository;
@@ -55,6 +57,9 @@ public class ProjetocursoApplication implements CommandLineRunner {
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
 
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetocursoApplication.class, args);
 	}
@@ -117,6 +122,12 @@ public class ProjetocursoApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
+		
+		ItemPedido it1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.0);
+		ItemPedido it2 = new ItemPedido(ped1, p3, 0.00, 2, 80.0);
+		ItemPedido it3 = new ItemPedido(ped2, p2, 100.00, 1, 800.0);
+		
+		itemPedidoRepository.saveAll(Arrays.asList(it1,it2,it3));
 
 	}
 
