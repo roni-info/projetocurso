@@ -1,4 +1,4 @@
-package br.com.roni.model;
+package br.com.roni.enums;
 
 public enum EstadoPagamento {
 	Pendente(1,"Pendente"), Quitado(2,"Quitado"), Cancelado(3,"Cancelado");

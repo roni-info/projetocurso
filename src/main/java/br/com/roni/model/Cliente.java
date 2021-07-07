@@ -43,6 +43,9 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
 
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
@@ -133,4 +136,21 @@ public class Cliente implements Serializable {
 		return true;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
+
+	
 }
