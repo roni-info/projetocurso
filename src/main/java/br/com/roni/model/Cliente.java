@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.com.roni.enums.TipoCliente;
 
 @Entity
@@ -26,16 +28,17 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_cliente")
+	@Column(name = "id_cliente")
 	private Long id;
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
-	/*@OneToMany(mappedBy = "cliente")
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco = new ArrayList<>();
-*/
+
 	@ElementCollection
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
@@ -93,14 +96,10 @@ public class Cliente implements Serializable {
 		this.tipo = tipo.getCod();
 	}
 
-	/*public List<Endereco> getEndereco() {
+	public List<Endereco> getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
-*/
 	public Set<String> getTelefones() {
 		return telefones;
 	}
