@@ -18,7 +18,12 @@ public class CategoriaService {
 	public Categoria buscar(Long id) throws ObjectNotFoundException {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
 		System.out.println(categoria.get().getId());
-		return categoria.orElseThrow(()-> new ObjectNotFoundException(
-				"obj nao encontrado  id" +id+ ", tipo: " + Categoria.class.getName()));
+		return categoria.orElseThrow(() -> new ObjectNotFoundException(
+				"obj nao encontrado  id" + id + ", tipo: " + Categoria.class.getName()));
+	}
+
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return categoriaRepository.save(obj);
 	}
 }
