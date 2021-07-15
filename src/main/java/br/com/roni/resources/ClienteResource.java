@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.roni.dto.ClienteDTO;
+import br.com.roni.dto.ClienteNewDTO;
 import br.com.roni.model.Cliente;
 import br.com.roni.service.ClienteService;
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -47,7 +48,7 @@ public class ClienteResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
 		Cliente obj = clienteService.fromDTO(objDto);
 		obj = clienteService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
