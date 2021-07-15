@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import br.com.roni.dto.CategoriaDTO;
 import br.com.roni.model.Categoria;
 import br.com.roni.repository.CategoriaRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -19,17 +20,19 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return categoriaRepository.save(obj);
+	}
+	
+
 	public Categoria find(Long id) throws ObjectNotFoundException {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
 		System.out.println(categoria.get().getId());
 		return categoria.orElseThrow(() -> new ObjectNotFoundException(
 				"obj nao encontrado  id" + id + ", tipo: " + Categoria.class.getName()));
 	}
-
-	public Categoria insert(Categoria obj) {
-		obj.setId(null);
-		return categoriaRepository.save(obj);
-	}
+	
 	
 	public Categoria update(Categoria obj) throws ObjectNotFoundException{
 		find(obj.getId());
@@ -49,4 +52,9 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
 		return categoriaRepository.findAll(pageRequest);
 	}
+
+	public Categoria fromDTO(CategoriaDTO objDTO) {
+		return new Categoria(objDTO.getId(),objDTO.getNome());
+	}
+
 }

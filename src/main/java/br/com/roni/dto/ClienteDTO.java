@@ -2,31 +2,27 @@ package br.com.roni.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
+import br.com.roni.model.Cliente;
 
-import org.hibernate.validator.constraints.Length;
-
-import br.com.roni.model.Categoria;
-
-public class CategoriaDTO implements Serializable {
+public class ClienteDTO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	private Long id;
-	
-	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min =5, max = 80, message = "Valor min. 5 e máx. 80")
 	private String nome;
+	private String email;
 	
-	public CategoriaDTO() {
+	public ClienteDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CategoriaDTO (Categoria obj) {
-		id = obj.getId();
-		nome = obj.getNome();
+	public ClienteDTO(Cliente cliente) {
+		id = cliente.getId();
+		nome = cliente.getNome();
+		email = cliente.getEmail();
 	}
 
 	public Long getId() {
@@ -44,7 +40,14 @@ public class CategoriaDTO implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 }
