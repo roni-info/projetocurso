@@ -20,7 +20,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.roni.enums.TipoCliente;
@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Pedido> pedidos = new ArrayList<>();
 	
@@ -121,6 +121,7 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -154,10 +155,10 @@ public class Cliente implements Serializable {
 		this.pedidos = pedidos;
 	}
 
-	public void setTipo(Integer tipo) {
+	/*public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
-
+*/
 	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}

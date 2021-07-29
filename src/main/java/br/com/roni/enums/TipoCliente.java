@@ -19,6 +19,13 @@ public enum TipoCliente {
 	}
 	
 	
+	
+	public void setCod(Integer cod) {
+		this.cod = cod;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	public static TipoCliente toEnum(Integer cod) {
 		if(cod == null) {
 			return null;
