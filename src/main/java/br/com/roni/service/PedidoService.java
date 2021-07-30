@@ -42,6 +42,9 @@ public class PedidoService {
 	private ProdutoService produtoService;
 	
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public Pedido buscar(Long id) throws ObjectNotFoundException{
 		Optional<Pedido> obj = pedidoRepository.findById(id);
 		return obj.orElseThrow(()-> new ObjectNotFoundException(
@@ -71,7 +74,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 	
