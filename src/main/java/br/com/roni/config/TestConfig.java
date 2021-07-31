@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import br.com.roni.service.DBService;
 import br.com.roni.service.EmailService;
 import br.com.roni.service.MockEmailService;
+import br.com.roni.service.SmtpMailService;
 
 @Configuration
 @Profile("test")
@@ -17,14 +18,21 @@ public class TestConfig {
 	@Autowired
 	private DBService dbService;
 
+	
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
 		dbService.instantiateTestDatabase();
 		return true;
 	}
 	
-	@Bean
+/*	@Bean
 	public EmailService emailService () {
 		return new MockEmailService();
 	}
+*/	
+	@Bean
+	public EmailService emailService() {
+		return new SmtpMailService();
+	}
+
 }

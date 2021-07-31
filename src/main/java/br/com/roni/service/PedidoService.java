@@ -28,10 +28,7 @@ public class PedidoService {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
-	
-	@Autowired
-	private ProdutoRepository produtoRepository;
-	
+		
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	

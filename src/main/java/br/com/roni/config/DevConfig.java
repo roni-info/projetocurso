@@ -9,10 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.com.roni.service.DBService;
+import br.com.roni.service.EmailService;
+import br.com.roni.service.SmtpMailService;
 
 @Configuration
 @Profile("dev")
 public class DevConfig {
+	
+	
 	@Autowired
 	private DBService dbService;
 
@@ -26,5 +30,10 @@ public class DevConfig {
 		}
 		dbService.instantiateTestDatabase();
 		return true;
+	}
+	
+	@Bean
+	public EmailService emailService() {
+		return new SmtpMailService();
 	}
 }
