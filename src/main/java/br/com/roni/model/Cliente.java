@@ -44,6 +44,9 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 
+	@JsonIgnore
+	private String senha;
+	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco = new ArrayList<>();
@@ -60,13 +63,14 @@ public class Cliente implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(Long id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+	public Cliente(Long id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipo==null)? null: tipo.getCod();
+		this.senha = senha;
 	}
 
 	public Long getId() {
@@ -163,5 +167,14 @@ public class Cliente implements Serializable {
 		this.endereco = endereco;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	
 	
 }
